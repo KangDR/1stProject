@@ -1,0 +1,52 @@
+제목:법무법인 사건관리 /Swing
+내용: 
+법원명 사건번호 채무자명 담당자 판결날짜 등 정렬
+추가 수정 삭제 기능 
++검색, 이자계산, 로그인
+
+drop sequence cseq ;
+create sequence cseq 
+	increment by 1
+	start with 1
+	minvalue 1
+	nocache ;
+	
+
+drop table case;
+create table case(
+	no number primary key,
+	court varchar2(30) not null,  
+	caseno varchar2(30) not null, 
+	debtor varchar2(20),
+	money number not null,
+	day date default sysdate,
+	client varchar2(10) not null
+);
+
+drop table client;
+create table client(
+	no number primary key,
+	company varchar2(20) not null, 
+	position varchar2(10),
+	name varchar2(20) not null,  
+	depart varchar2(20),
+	phone varchar2(20),
+	email varchar2(20)
+);
+
+insert into case values(cseq.nextval,'서울중앙지방법원','2021가소1111111','홍길동',500000,'2021-10-15','김일등');
+insert into case values(cseq.nextval,'서울서부지방법원','2011가소2222222','이순신',150000,'2011-07-11','김일등');
+insert into case values(cseq.nextval,'서울남부지방법원','2019가소3333333','김유신',3000000,'2019-11-6','김일등');
+insert into case values(cseq.nextval,'서울북부지방법원','2001가소4444444','정약용',20000000,'2001-06-15','최이등');
+insert into case values(cseq.nextval,'서울동부지방법원','2017가소5555555','윤봉길',1500000,'2017-03-05','최이등');
+insert into case values(cseq.nextval,'부산지방법원','2013가소6666666','유관순',20000,'2013-08-19','박삼등');
+insert into case values(cseq.nextval,'부산지방법원','2021가소7777777','강감찬',136000,'2021-11-07','박삼등');
+insert into case values(cseq.nextval,'대전지방법원','2016가소8888888','장영실',1100000,'2016-09-13','이사등');
+insert into case values(cseq.nextval,'제주지방법원','2017가소9999999','한석봉',120000,'2017-05-02','전오등');
+insert into case values(cseq.nextval,'부산지방법원','2013가소1234567','임꺽정',670000,'2013-11-15','박삼등');
+
+insert into client values(1,'일등화재','과장','김일등','서울보상부','010-1234-5678','kim1@naver.com');
+insert into client values(2,'이등생명','부장','최이등','생명보험팀','010-1111-1111','choi2@naver.com');
+insert into client values(3,'삼등손보','대리','박삼등','부산보상부','010-2222-2222','park3@naver.com');
+insert into client values(4,'일등화재','주임','이사등','대전보상부','010-3333-4444','lee4@naver.com');
+insert into client values(5,'일등화재','사원','전오등','제주보상부','010-5555-6666','jeon5@naver.com');
